@@ -6,15 +6,17 @@
 
 IMAGENAME  = charcodes.d64
 DSKNAME    = charcodes
-PROGNAME   = c64-charcodes.bas
+PROGNAME   = charcodes.bas
+TOKENIZED  = charcodes.prg
 FILENAME   = charcodes
 
 .PHONY: all
 .PHONY: clean
 
 all: $(PROGNAME)
+	petcat -w2 -o $(TOKENIZED) -- $(PROGNAME)
 	c1541 -format $(DSKNAME),aa D64 $(IMAGENAME)
-	c1541 -attach $(IMAGENAME) -write $(PROGNAME) $(FILENAME)
+	c1541 -attach $(IMAGENAME) -write $(TOKENIZED) $(FILENAME)
 
 clean:
 	$(RM) $(IMAGENAME)
