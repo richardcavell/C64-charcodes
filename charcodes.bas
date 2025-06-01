@@ -6,7 +6,7 @@
 6 rem
 7 rem copyright 2019, 2025
 8 rem
-10 cls
+10 print chr$(147)
 20 print "             c64-charcodes"
 30 print "       a character code displayer"
 40 print "           by richard cavell"
@@ -23,4 +23,17 @@
 220 get#1, a$
 230 if a$<>"" then 300
 240 goto 200
-300 print a$
+300 poke 211, 5:poke 214, 15:sys 58732
+310 print "appearance:"
+300 poke 211, 18:poke 214, 15:sys 58732
+310 print " "
+320 poke 211, 18:poke 214, 15:sys 58732
+330 print a$
+350 poke 211, 8:poke 214, 17:sys 58732
+360 print "petscii:"
+400 poke 211, 17:poke 214, 17:sys 58732
+410 print "    "
+420 poke 211, 17:poke 214, 17:sys 58732
+430 print asc(a$)
+500 goto 200
+
